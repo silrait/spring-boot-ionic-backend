@@ -8,12 +8,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.silrait.domain.Categoria;
+import br.com.silrait.domain.Produto;
 import br.com.silrait.repositories.CategoriaRepository;
+import br.com.silrait.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class EstudoSringBootApplication implements CommandLineRunner{
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	@Autowired
+	private ProdutoRepository produtoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EstudoSringBootApplication.class, args);
@@ -25,6 +29,18 @@ public class EstudoSringBootApplication implements CommandLineRunner{
 		Categoria cat2 = new Categoria(null, "Escritório");
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		
+		Produto p1 = new Produto(null, "Computador", 2000.00);
+		p1.addCategoria(cat1);
+		
+		Produto p2 = new Produto(null, "Impressora", 800.00);
+		p2.addCategoria(cat1);
+		p2.addCategoria(cat2);
+		
+		Produto p3 = new Produto(null, "Mouse", 80.00);
+		p3.addCategoria(cat1);
+		
+		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 	}
 
 }
