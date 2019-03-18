@@ -13,6 +13,7 @@ import br.com.silrait.domain.Cidade;
 import br.com.silrait.domain.Cliente;
 import br.com.silrait.domain.Endereco;
 import br.com.silrait.domain.Estado;
+import br.com.silrait.domain.ItemPedido;
 import br.com.silrait.domain.Pagamento;
 import br.com.silrait.domain.PagamentoComBoleto;
 import br.com.silrait.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import br.com.silrait.repositories.CidadeRepository;
 import br.com.silrait.repositories.ClienteRepository;
 import br.com.silrait.repositories.EnderecoRepository;
 import br.com.silrait.repositories.EstadoRepository;
+import br.com.silrait.repositories.ItemPedidoRepository;
 import br.com.silrait.repositories.PagamentoRepository;
 import br.com.silrait.repositories.PedidoRepository;
 import br.com.silrait.repositories.ProdutoRepository;
@@ -47,6 +49,9 @@ public class EstudoSringBootApplication implements CommandLineRunner {
 	private PagamentoRepository pagamentoRepository;
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(EstudoSringBootApplication.class, args);
@@ -117,6 +122,19 @@ public class EstudoSringBootApplication implements CommandLineRunner {
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));		
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.0);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.0);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.0, 1, 800.0);
+		
+		ped1.addItem(ip1);
+		ped1.addItem(ip2);
+		ped2.addItem(ip3);
+		
+		p1.addItem(ip1);
+		p2.addItem(ip3);
+		p3.addItem(ip2);
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 
 }
