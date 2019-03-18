@@ -27,7 +27,7 @@ public class Pedido implements Serializable{
 	private Integer id;
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date instante;
-	@JsonManagedReference
+	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
 	@ManyToOne
@@ -36,7 +36,7 @@ public class Pedido implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy="id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
 
