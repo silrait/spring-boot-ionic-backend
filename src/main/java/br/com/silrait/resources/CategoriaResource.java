@@ -1,9 +1,10 @@
 package br.com.silrait.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.silrait.domain.Categoria;
+import br.com.silrait.dto.CategoriaDTO;
 import br.com.silrait.services.CategoriaService;
-import br.com.silrait.services.exceptions.DataIntegrityException;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -27,6 +28,14 @@ public class CategoriaResource {
 		Categoria c = service.find(id);
 
 		return ResponseEntity.ok(c);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> lista = service.findAll();
+		List<CategoriaDTO> listaDTO = lista.stream().map( categoria -> new CategoriaDTO(categoria) )
+			.collect(Collectors.toList());
+		return ResponseEntity.ok(listaDTO);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
