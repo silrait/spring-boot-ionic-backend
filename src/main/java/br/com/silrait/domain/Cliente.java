@@ -152,4 +152,9 @@ public class Cliente implements Serializable{
 		}
 	}
 
+	public void addTelefone(String telefone) {
+		this.telefones.add(telefone);
+		
+	}
+
 }

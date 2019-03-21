@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.silrait.domain.Cliente;
 import br.com.silrait.dto.ClienteDTO;
+import br.com.silrait.dto.ClienteNewDTO;
 import br.com.silrait.services.ClienteService;
 
 @RestController
@@ -61,10 +62,10 @@ public class ClienteResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO clienteDTO) {
-		Cliente categoria = service.fromDTO(clienteDTO);
-		categoria = service.insert(categoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO clienteDTO) {
+		Cliente cliente = service.fromDTO(clienteDTO);
+		cliente = service.insert(cliente);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId())
 				.toUri();
 
 		return ResponseEntity.created(uri).build();
