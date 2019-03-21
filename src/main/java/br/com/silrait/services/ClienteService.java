@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.silrait.domain.Cliente;
-import br.com.silrait.domain.Cliente;
 import br.com.silrait.dto.ClienteDTO;
 import br.com.silrait.repositories.ClienteRepository;
 import br.com.silrait.services.exceptions.DataIntegrityException;
