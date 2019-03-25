@@ -66,20 +66,47 @@ public class EstudoSringBootApplication implements CommandLineRunner {
 		Categoria cat5 = new Categoria(null, "Jardinagem");
 		Categoria cat6 = new Categoria(null, "Decoração");
 		Categoria cat7 = new Categoria(null, "Perfumaria");
-
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
+		
 
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		p1.addCategoria(cat1);
-
+		p1.addCategoria(cat4);
+		
 		Produto p2 = new Produto(null, "Impressora", 800.00);
 		p2.addCategoria(cat1);
 		p2.addCategoria(cat2);
-
+		p2.addCategoria(cat4);
+		
 		Produto p3 = new Produto(null, "Mouse", 80.00);
 		p3.addCategoria(cat1);
-
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		p3.addCategoria(cat4);
+		
+		Produto p4 = new Produto(null, "Mesa de escritório", 300.00);
+		p4.addCategoria(cat2);
+		
+		Produto p5 = new Produto(null, "Toalha", 50.00);
+		p5.addCategoria(cat3);
+		
+		Produto p6 = new Produto(null, "Colcha", 200.00);
+		p6.addCategoria(cat3);
+		
+		Produto p7 = new Produto(null, "TV true color", 1200.00);
+		p7.addCategoria(cat4);
+		
+		Produto p8 = new Produto(null, "Roçadeira", 800.00);
+		p8.addCategoria(cat5);
+		
+		Produto p9 = new Produto(null, "Abajour", 100.00);
+		p9.addCategoria(cat6);
+		
+		Produto p10 = new Produto(null, "Pendente", 180.00);
+		p10.addCategoria(cat6);
+		
+		Produto p11 = new Produto(null, "Xampu", 90.00);
+		p11.addCategoria(cat7);
+		
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
